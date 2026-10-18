@@ -235,7 +235,6 @@ describe("runBacktest", () => {
         slippageModel: new FixedBpsSlippageModel(100n),
         costSchedule: {
           swapFeeRate: amount("0.001"),
-          borrowSpreadRate: amount("0"),
           networkFee: amount("0.1"),
         },
       },
@@ -333,7 +332,6 @@ describe("runBacktest", () => {
           slippageModel: new FixedBpsSlippageModel(25n),
           costSchedule: {
             swapFeeRate: amount("0.0005"),
-            borrowSpreadRate: amount("0"),
             networkFee: amount("0.01"),
           },
         },
