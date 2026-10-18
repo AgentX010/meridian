@@ -5,9 +5,9 @@ import {
   applyCors,
   checkRateLimit,
   requireGetMethod,
+  vaultReadCacheControl,
 } from "../../_lib/middleware.js";
 
-const CACHE_CONTROL = "public, s-maxage=60, stale-while-revalidate=300";
 const KNOWN_VAULT_IDS = new Set(
   [
     ...Object.values(KNOWN_POOLS.mainnet),
@@ -35,7 +35,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     console.error("[vaults] fetch error:", result.error);
   }
   if (result.status === 200) {
-    res.setHeader("Cache-Control", CACHE_CONTROL);
+    res.setHeader("Cache-Control", vaultReadCacheControl());
   }
   res.status(result.status).json(result.body);
 }
